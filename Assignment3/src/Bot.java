@@ -1,28 +1,33 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
-import java.util.*;
 public class Bot {
-	String name;
-	String currentInput;
+	 String name;
+	 String currentInput;
 	String currentOutput;
-	float mood_score=0;
-	float exchange_count=0;
-	boolean keep_going=true;
-	HashMap<String,String> responses=new HashMap<String,String>();
+	 float mood_score=0;
+	 float exchange_count=0;
+	 boolean keep_going=true;
+	 HashMap<String,String> responses=new HashMap<String,String>();
 	ArrayList<String> endings=new ArrayList<String>();
-	String[] bye_words= {"go","leave","bye","end"};
-	String[] apologies={"I don't understand. Could you try phrasing it a different way?","I'm not sure what you mean by that.","Hmm. I'm not sure I can help with that. Anything else?","I'm sorry, I'm not smart enough to understand what you meant. Try saying something else?","I think I don't understand what you meant. Could you clarify?"};;
-	String[] talk_to_me={"The silent treatment I see. Well I'm here if you need me.", "I can't help you if you don't talk to me!","You can tell me anything! Type in the text box when you feel ready"};
+	 String[] bye_words= {"go","leave","bye","end"};
+	 String[] apologies={"I don't understand. Could you try phrasing it a different way?","I'm not sure what you mean by that.","Hmm. I'm not sure I can help with that. Anything else?","I'm sorry, I'm not smart enough to understand what you meant. Try saying something else?","I think I don't understand what you meant. Could you clarify?"};;
+	 String[] talk_to_me={"The silent treatment I see. Well I'm here if you need me.", "I can't help you if you don't talk to me!","You can tell me anything! Type in the text box when you feel ready"};
 	Bot(){
-		name="user";
+		name="User";
+		load();
 	}
 	
-	public void start() {
+	
+	
+	public  void start() {
 		load();
 		greet();
 		talk();
 		
 	}
-	public void talk() {
+	public   void talk() {
 		while(keep_going) {
 			getInput();
 			exchange_count++;
@@ -33,7 +38,7 @@ public class Bot {
 			}
 			currentInput=Optimizer.getOptimized(currentInput);
 			if(currentInput.trim().length()<1) {
-				getOutput(talk_to_me[(int) (talk_to_me.length*Math.random())]);
+				setOutput(talk_to_me[(int) (talk_to_me.length*Math.random())]);
 				continue;
 			}
 			
@@ -43,7 +48,7 @@ public class Bot {
 				continue;
 			}
 			else
-				getOutput(response);
+				setOutput(response);
 			
 			
 			//TO DO randomly choose to ask user if they want affirmations, information or to leave using a random switch case
@@ -74,7 +79,7 @@ public class Bot {
 		}
 		
 	}
-	public void load() {
+	public  void load() {
 		responses.put("good", "I'm happy to hear that :D. Tell me more!");
 		responses.put("fun", "Looks like things are going well! Tell me more!");
 		responses.put("sad","I see you've been feeling a bit blue recently. Let's talk about it.");
@@ -88,22 +93,24 @@ public class Bot {
 		
 		
 	}
-	public void getInput() {
+	public  void getInput() {
 		// TO DO make it get input from GUI instead
-		Scanner sc= new Scanner(System.in);
-		setInput(sc.nextLine());
-		
+		//Scanner sc= new Scanner(System.in);
 	}
-	public void setInput(String input) {
+	public  void setInput(String input) {
 		
 		currentInput=input.toLowerCase();
+		System.out.println(input);
+		
 	}
-	public void getOutput(String s) {
+	public  void setOutput(String s) {
 		
 		System.out.println(s);
+		currentOutput=s;
+		
 		
 	}
-	public String getResponse() {
+	public   String getResponse() {
 		for(String key:responses.keySet()) {
 			if(exists_in_input(key)) {
 				return(responses.get(key));
@@ -113,7 +120,7 @@ public class Bot {
 		
 		
 	}
-	public boolean exists_in_input(String key) {
+	public   boolean exists_in_input(String key) {
 		StringTokenizer st=new StringTokenizer(currentInput);
 		while(st.hasMoreTokens()) {
 			String t=st.nextToken();
@@ -127,18 +134,15 @@ public class Bot {
 	public void apologize() {
 		
 		String resp=apologies[(int) (apologies.length*Math.random())];
-		getOutput(resp);
+		setOutput(resp);
 		
 	}
 	public void greet() {
-		getOutput("Hi! I'm Serenity! What's your name?");
-		getInput();
-		name=PoSTagger.getProperNoun(currentInput);
-		getOutput("Nice to meet you "+(name.substring(0,1).toUpperCase()+name.substring(1))+" :) How's it going?");
+		setOutput("Hi! I'm Serenity! What's your name?");
 		return;
 		
 	}
-	public void inform() {
+	public   void inform() {
 		switch((int)(mood_score/exchange_count)) {
 		case 0:
 			;
@@ -157,7 +161,7 @@ public class Bot {
 		
 		
 	}
-	public void suggestHelp(int x) {
+	public   void suggestHelp(int x) {
 		//TO DO output help suggestions
 		switch(x) {
 		case 0: {
@@ -170,7 +174,7 @@ public class Bot {
 		}
 		}
 	}
-	public void affirm() {
+	public   void affirm() {
 		switch((int)(mood_score/exchange_count)) {
 		case 0:
 			;
@@ -189,7 +193,7 @@ public class Bot {
 		
 		
 	}
-	public boolean check_goodbye() {
+	public   boolean check_goodbye() {
 		for(String word: bye_words) {
 			if(exists_in_input(word))
 				return true;
@@ -199,9 +203,9 @@ public class Bot {
 		
 		
 	}
-	public void goodbye() {
+	public   void goodbye() {
 		keep_going=false;
-		getOutput("It was great talking to you! Goodbye!");
+		setOutput("It was great talking to you! Goodbye!");
 		
 		
 	}

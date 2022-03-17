@@ -12,12 +12,12 @@ import java.awt.event.ActionEvent;
 
 public class GUI {
 
-	//private Bot bot;
+	
 	private JFrame frame;
 	private JTextField input_field;
 	JTextPane chatHistory;
 	JScrollPane scrollPane;
-
+	static Bot bot=new Bot();
 	/**
 	 * Launch the application.
 	 */
@@ -32,6 +32,8 @@ public class GUI {
 				}
 			}
 		});
+		
+		
 	}
 
 	/**
@@ -45,6 +47,7 @@ public class GUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +63,8 @@ public class GUI {
 		events();
 		frame.getContentPane().add(input_field, BorderLayout.SOUTH);
 		input_field.setColumns(10);
-		
+		bot.greet();
+		output(bot.currentOutput);
 		
 		
 		
@@ -69,12 +73,34 @@ public class GUI {
 		
 		input_field.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-								
-				chatHistory.setText(chatHistory.getText()+input_field.getText()+"\n");
+				String input=input_field.getText();
+				bot.setOutput(bot.name+": "+input);
+				output(bot.currentOutput);
+				bot.setInput(input);
 				input_field.setText("");
+				bot.exchange_count++;
+				if(bot.exchange_count==1) {
+					bot.name=PoSTagger.getProperNoun(input);
+					if(bot.name=="") {
+						output("Serenity: I'm going to need your name before we continue!");
+						bot.name="User";
+						bot.exchange_count--;
+					}
+					else {
+					bot.setOutput("Serenity: Nice to meet you "+bot.name +" :) How's it going?");
+					output(bot.currentOutput);
+					}
+				}
+				else {
+					
+					
+				}
 			}
 		});
 		
+	}
+	private void output(String s) {
+		chatHistory.setText(chatHistory.getText()+s+"\n");
 	}
 
 }
