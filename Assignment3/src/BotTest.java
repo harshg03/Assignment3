@@ -16,7 +16,7 @@ class BotTest {
 	//
 	@Test
 	void test_getResponse() {
-		String output = test_Bot.getResponse();
+		String output = test_Bot.currentOutput;
 		String expected_output = "ERR";
 		assertEquals(expected_output, output);
 		fail("Not yet implemented");
@@ -54,16 +54,9 @@ class BotTest {
 		String key = "depr"; // will try to match with depression
 		test_Bot.currentInput = "depression";
 		boolean expected_output = true;
-		boolean output = exists_in_input(key);
+		boolean output = test_Bot.exists_in_input(key);
 		assertEquals(expected_output, output);
 	}
 
-	@Test
-	void test_() {
-	}
-
-	@Test
-	void test_() {
-	}
 
 }
