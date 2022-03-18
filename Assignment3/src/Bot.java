@@ -96,7 +96,7 @@ public class Bot {
 
 	}
 
-	private String getInput() {
+	public String getInput() {
 		// TODO Auto-generated method stub
 		return currentInput;
 	}
