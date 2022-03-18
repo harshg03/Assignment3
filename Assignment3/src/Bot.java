@@ -41,6 +41,7 @@ public class Bot {
 	}
 
 	public void optimizeInput() {
+		currentInput= Optimizer.removePunc(currentInput);
 		currentInput = Optimizer.getOptimized(currentInput);
 
 	}

@@ -104,6 +104,9 @@ public class GUI {
 						
 						output("Serenity: "+bot.getOutput());
 					}
+					if(bot.exchange_count>10) {
+						;
+					}
 					
 					
 				}

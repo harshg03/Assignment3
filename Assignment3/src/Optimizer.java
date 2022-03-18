@@ -6,7 +6,7 @@ public class Optimizer {
 	
 	public static void main(String[] args) {
 		String text="happy going leaving";
-		System.out.println(getOptimized(text));
+		System.out.println(removePunc(text));
 	}
 	public static String getOptimized(String s) {
 		String result="";
@@ -20,6 +20,12 @@ public class Optimizer {
 	    	result=result+tok.lemma()+" ";
 	        //System.out.println(tok.word()+ tok.lemma());
 	      }
+		return result;
+		
+	}
+	public static String removePunc(String s) {
+		
+		String result=s.replaceAll("\\p{Punct}", "");;
 		return result;
 		
 	}
