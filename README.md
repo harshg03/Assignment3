@@ -7,7 +7,7 @@ We are developing a conversational agent named Serenity that talks to the user a
 ## How to run the code
 
 1. Import this repository into Eclipse or IDE of your choice
-2. Add the specified files as indicated in  ["required files.txt" ]("required files.txt") to the classpath (files not included due to size constraint)
+2. Add the specified files as indicated in  ["required files.txt" ](https://github.com/COSC-310-Team-13/Assignment3/blob/main/required%20files.txt) to the classpath (files not included due to size constraint)
 3. Run GUI
 
 ## Classes used
