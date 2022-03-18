@@ -60,7 +60,7 @@ public class BotTest {
 		boolean actual = test_Bot.check_goodbye();
 		boolean output = true;
 		assertEquals(output, actual);
-		fail("Not yet implemented");
+		fail("Check goodbye method failed test.");
 	}
 
 	@Test
@@ -69,7 +69,7 @@ public class BotTest {
 		String actual = test_Bot.getOutput();
 		String output = "It was great talking to you! Goodbye!";
 		assertEquals(output, actual);
-		fail("Not yet implemented");
+		fail("goodbye method failed.");
 	}
 
 	@Test
