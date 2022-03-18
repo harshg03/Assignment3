@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="C:/Users/jeena/eclipse-workspace/Assignment3/lib/stanford-corenlp-4.4.0-models.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jeena/eclipse-workspace/Assignment3/lib/stanford-corenlp-4.4.0-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jeena/eclipse-workspace/Assignment3/lib/stanford-postagger.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

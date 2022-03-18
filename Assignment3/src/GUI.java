@@ -64,7 +64,7 @@ public class GUI {
 		frame.getContentPane().add(input_field, BorderLayout.SOUTH);
 		input_field.setColumns(10);
 		bot.greet();
-		output(bot.currentOutput);
+		output(bot.getOutput());
 		
 		
 		
@@ -75,7 +75,8 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				String input=input_field.getText();
 				bot.setOutput(bot.name+": "+input);
-				output(bot.currentOutput);
+				//bot.removePunc();
+				output(bot.getOutput());
 				bot.setInput(input);
 				input_field.setText("");
 				bot.exchange_count++;
@@ -88,10 +89,21 @@ public class GUI {
 					}
 					else {
 					bot.setOutput("Serenity: Nice to meet you "+bot.name +" :) How's it going?");
-					output(bot.currentOutput);
+					output(bot.getOutput());
 					}
 				}
 				else {
+					bot.optimizeInput();
+					bot.updateMoodScore();
+					bot.getResponse();
+					if(bot.check_goodbye()) {
+						bot.goodbye();
+						output("Serenity: "+bot.getOutput());
+					}
+					else {
+						
+						output("Serenity: "+bot.getOutput());
+					}
 					
 					
 				}
