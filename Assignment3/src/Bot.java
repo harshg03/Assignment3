@@ -120,7 +120,7 @@ public class Bot {
 		
 		
 	}
-	public   boolean exists_in_input(String key) {
+	public boolean exists_in_input(String key) {
 		StringTokenizer st=new StringTokenizer(currentInput);
 		while(st.hasMoreTokens()) {
 			String t=st.nextToken();
