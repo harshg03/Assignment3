@@ -25,6 +25,7 @@ public class Bot {
 
 	Bot() {
 		name = "User";
+		int five = 5
 		load();
 	}
 
