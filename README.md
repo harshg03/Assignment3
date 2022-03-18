@@ -17,6 +17,7 @@ We are developing a conversational agent named Serenity that talks to the user a
 3. Optimizer: uses Lemmatization from CoreNLP Stanford toolkit to create an optimized search string by reducing to lemma
 4. LevenshteinDistance: Used as appears from Apache Lucene Search library, returns Levenshtein distance between two strings. Used to handle spelling errors
 5. PoSTagger: uses Parts of Speech tagging from CoreNLP Stanford toolkit to retreive required part of speech
+6. SentimentScorer: Uses Sentiment analysis from Stanford CoreNLP to extract mood score of the input
 
 
 

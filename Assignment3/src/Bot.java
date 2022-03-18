@@ -3,14 +3,16 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Bot {
+	//responsible for the agent's functionality, sets current input and sets current output based on input
 	 String name;
-	 String currentInput;
-	String currentOutput;
+	 private String currentInput;
+	 private String currentOutput;
 	 float mood_score=0;
+	 float mood_count=0;
 	 float exchange_count=0;
 	 boolean keep_going=true;
 	 HashMap<String,String> responses=new HashMap<String,String>();
-	ArrayList<String> endings=new ArrayList<String>();
+	 //ArrayList<String> endings=new ArrayList<String>();
 	 String[] bye_words= {"go","leave","bye","end"};
 	 String[] apologies={"I don't understand. Could you try phrasing it a different way?","I'm not sure what you mean by that.","Hmm. I'm not sure I can help with that. Anything else?","I'm sorry, I'm not smart enough to understand what you meant. Try saying something else?","I think I don't understand what you meant. Could you clarify?"};;
 	 String[] talk_to_me={"The silent treatment I see. Well I'm here if you need me.", "I can't help you if you don't talk to me!","You can tell me anything! Type in the text box when you feel ready"};
@@ -27,7 +29,18 @@ public class Bot {
 		talk();
 		
 	}
-	public   void talk() {
+	public void updateMoodScore() {
+		mood_score=mood_score+SentimentScorer.getScore(currentInput);
+		mood_count++;
+	}
+	public void optimizeInput() {
+		currentInput=Optimizer.getOptimized(currentInput);
+		
+	}
+	public void removePunc() {
+		currentInput=currentInput.replaceAll("\\p{Punct}", "");
+	}
+	public void talk() {
 		while(keep_going) {
 			getInput();
 			exchange_count++;
@@ -42,14 +55,7 @@ public class Bot {
 				continue;
 			}
 			
-			String response=getResponse();
-			if(response=="ERR") {
-				apologize();
-				continue;
-			}
-			else
-				setOutput(response);
-			
+			getResponse();
 			
 			//TO DO randomly choose to ask user if they want affirmations, information or to leave using a random switch case
 			int c=2;
@@ -79,6 +85,13 @@ public class Bot {
 		}
 		
 	}
+	private String getInput() {
+		// TODO Auto-generated method stub
+		return currentInput;
+	}
+
+
+
 	public  void load() {
 		responses.put("good", "I'm happy to hear that :D. Tell me more!");
 		responses.put("fun", "Looks like things are going well! Tell me more!");
@@ -88,15 +101,12 @@ public class Bot {
 		responses.put("sorry", "That's okay! Can I help you with anything else?");
 		responses.put("yes", "Cool! What's next?");
 		responses.put("suffering", "That sounds really difficult. I'm sorry you're going through that.");
-		responses.put("die", "Hmm... That sounds really serious.");
+		responses.put("die", "Hmm... That sounds really serious. We can circle back to that");
 		//TO DO load responses from text file instead of adding here
 		
 		
 	}
-	public  void getInput() {
-		// TO DO make it get input from GUI instead
-		//Scanner sc= new Scanner(System.in);
-	}
+	
 	public  void setInput(String input) {
 		
 		currentInput=input.toLowerCase();
@@ -110,13 +120,21 @@ public class Bot {
 		
 		
 	}
-	public   String getResponse() {
+	public String getOutput() {
+		return currentOutput;
+	}
+	public void getResponse() {
+		boolean b=false;
 		for(String key:responses.keySet()) {
 			if(exists_in_input(key)) {
-				return(responses.get(key));
+				setOutput(responses.get(key));
+				b=true;
+				break;
 			}
 		}
-		return "ERR";
+		if(!b) {
+			apologize();
+		}
 		
 		
 	}
@@ -161,7 +179,7 @@ public class Bot {
 		
 		
 	}
-	public   void suggestHelp(int x) {
+	public  void suggestHelp(int x) {
 		//TO DO output help suggestions
 		switch(x) {
 		case 0: {
