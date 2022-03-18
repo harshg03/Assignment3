@@ -93,14 +93,15 @@ public class GUI {
 					}
 				}
 				else {
+					bot.optimizeInput();
+					bot.updateMoodScore();
+					bot.getResponse();
 					if(bot.check_goodbye()) {
 						bot.goodbye();
 						output("Serenity: "+bot.getOutput());
 					}
 					else {
-						bot.optimizeInput();
-						bot.updateMoodScore();
-						bot.getResponse();
+						
 						output("Serenity: "+bot.getOutput());
 					}
 					
