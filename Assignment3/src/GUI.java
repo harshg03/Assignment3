@@ -108,7 +108,7 @@ public class GUI {
 						bot.getResponse();
 						output("Serenity: "+bot.getOutput());
 					}
-					if(bot.exchange_count>15) {
+					if(bot.exchange_count>15 && bot.exchange_count%8==0) {
 						
 						switch((int) (3*Math.random())) {
 						case 0: {bot.inform();output("Serenity: "+bot.getOutput());}
