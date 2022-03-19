@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -27,14 +28,6 @@ public class Bot {
 		name = "User";
 		load();
 	}
-
-	public void start() {
-		load();
-		greet();
-		talk();
-
-	}
-
 	public void updateMoodScore() {
 		mood_score = mood_score + SentimentScorer.getScore(currentInput);
 		mood_count++;
@@ -46,74 +39,19 @@ public class Bot {
 
 	}
 
-	public void removePunc() {
-		currentInput = currentInput.replaceAll("\\p{Punct}", "");
-	}
-
-	public void talk() {
-		while (keep_going) {
-			getInput();
-			exchange_count++;
-			mood_score = mood_score + SentimentScorer.getScore(currentInput);
-			if (check_goodbye()) {
-				goodbye();
-				break;
-			}
-			currentInput = Optimizer.getOptimized(currentInput);
-			if (currentInput.trim().length() < 1) {
-				setOutput(talk_to_me[(int) (talk_to_me.length * Math.random())]);
-				continue;
-			}
-
-			getResponse();
-
-			// TO DO randomly choose to ask user if they want affirmations, information or
-			// to leave using a random switch case
-			int c = 2;
-			if (exchange_count > 15) {
-				c++;
-
-			}
-			switch ((int) (c * Math.random())) {
-				case 0: {
-
-				}
-					break;
-				case 1: {
-					;
-
-				}
-					break;
-				case 2: {
-					;
-				}
-			}
-
-			if (exchange_count > 10 && (mood_score / exchange_count) < 2) {
-				suggestHelp((int) (mood_score / exchange_count));
-			}
-
-		}
-
-	}
-
 	public String getInput() {
 		// TODO Auto-generated method stub
 		return currentInput;
 	}
 
-	public void load() {
-		responses.put("good", "I'm happy to hear that :D. Tell me more!");
-		responses.put("fun", "Looks like things are going well! Tell me more!");
-		responses.put("sad", "I see you've been feeling a bit blue recently. Let's talk about it.");
-		responses.put("hope", "I want you to know it will get better");
-		responses.put("afraid", "I'm sure it feels scary, but you can get through this.");
-		responses.put("sorry", "That's okay! Can I help you with anything else?");
-		responses.put("yes", "Cool! What's next?");
-		responses.put("suffering", "That sounds really difficult. I'm sorry you're going through that.");
-		responses.put("die", "Hmm... That sounds really serious. We can circle back to that");
-		// TO DO load responses from text file instead of adding here
-
+	public void load()  {
+		
+		try {
+			responses=ReadFromFile.txtToMap("responses.txt", "]");
+		} catch (IOException e) {
+			;
+		}
+		
 	}
 
 	public void setInput(String input) {
@@ -174,54 +112,66 @@ public class Bot {
 	}
 
 	public void inform() {
+		String information="";
 		switch ((int) (mood_score / exchange_count)) {
+		
 			case 0:
-				;
+				information="For people in troublesome situations like yourself reach out to one or more of the following resources: local psychiatrist, local doctor, someone you trust.For immediate support please call 310-6789 for the BC Mental Health Support Line or 811 to talk with a registered nurse or pharmacist about your symptoms, if you are in distress please contact the suicide hotline at 1-800-784-2433.";
+				break;
 			case 1:
-				;
+				information="Getting over your obstacles is important to us to get support contact the following: local psychiatrist, local doctor, someone you trust. For immediate support please call 310-6789 for the BC Mental Health Support Line or 811 to talk with a registered nurse or pharmacist about your symptoms.";
 				break;
 			case 2:
-				;
+				information="The following resources will provide support for you: local psychiatrist, local doctor, someone you trust, and for immediate support please call 310-6789 for the BC Mental Health Support Line";
 				break;
 			case 3:
-				;
+				information="Good to see you well keep in contact with these resources: local psychiatrist, local doctor, someone you trust, for immediate support please call 310-6789 for the BC Mental Health Support Line.";
 			case 4:
+				information="it is so encouraging to see you like this pay a visit to our suggested resources: local psychiatrist, local doctor, someone you trust,for immediate support please call 310-6789 for the BC Mental Health Support Line.";
 				break;
 
 		}
+		setOutput(information);
 
 	}
 
-	public void suggestHelp(int x) {
-		// TO DO output help suggestions
-		switch (x) {
+	public void suggestHelp() {
+		switch ((int) (mood_score / exchange_count)) {
 			case 0: {
 				// tell user to get urgent help
+				String suggestion=name+ " the tone in your responses is very concerning. I suggest you seek treatment from a local psychiatrist or therapist as soon as possible.";
+				setOutput(suggestion);
+
 				;
 			}
 				break;
 			case 1: {
 				// tell user you are concerned and they should get help soon
+				String suggestion=name+ " the tone in your response is somewhat concerning. I suggest you seek treatment from a local psychiatrist or therapist soon.";
+				setOutput(suggestion);
 			}
 		}
 	}
 
 	public void affirm() {
+		String affirmation=name;
 		switch ((int) (mood_score / exchange_count)) {
 			case 0:
-				;
+				affirmation=affirmation+" you are not alone. People go through  difficulties just like the ones you are facing right now these people handle their difficulties with the help of others you can do it too.";
 			case 1:
-				;
+				affirmation=affirmation+" I know you are having a hard time with this, but I believe you can get through it.";
 				break;
 			case 2:
-				;
+				affirmation=affirmation+" things seem to ge going alright for you, I'm glad!";
 				break;
 			case 3:
-				;
+				affirmation=affirmation+" it makes me so happy to see you like this! Please continue to be happy to avoid setbacks.";
 			case 4:
+				affirmation=affirmation+"  it is so inspiring to see you like this! You're a rockstar!";
 				break;
 
 		}
+		setOutput(affirmation);
 
 	}
 

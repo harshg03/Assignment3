@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 
 public class GUI {
 
-	
+	//this class creates the Graphical User Interface and uses the bot object to facilitate conversation
 	private JFrame frame;
 	private JTextField input_field;
 	JTextPane chatHistory;
@@ -104,8 +104,15 @@ public class GUI {
 						
 						output("Serenity: "+bot.getOutput());
 					}
-					if(bot.exchange_count>10) {
-						;
+					if(bot.exchange_count>15) {
+						
+						switch((int) (3*Math.random())) {
+						case 0: bot.inform();
+						break;
+						case 1: bot.affirm();
+						break;
+						case 2: bot.suggestHelp();
+						}
 					}
 					
 					

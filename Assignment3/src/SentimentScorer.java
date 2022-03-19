@@ -7,9 +7,9 @@ import edu.stanford.nlp.sentiment.SentimentCoreAnnotations.SentimentAnnotatedTre
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
 public class SentimentScorer {
+//this class uses Sentiment analysis from Stanford CoreNLP to extract mood score of the input
 	static Properties props;
 	static StanfordCoreNLP pipeline;
-
 	public static void main(String[] args) {
 		init();
 		System.out.println(getScore("This is ok"));
