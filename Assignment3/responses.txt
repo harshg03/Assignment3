@@ -13,3 +13,8 @@ information]What would you like to know? I'll try my best to help!
 resource]There are many resources you can access in difficult times! Consult your local psychiatrist, local doctor or talk to a loved one. For immediate support please call 310-6789 for the BC Mental Health Support Line.
 anger]It is normal to feel this way in times on distress. Try meditation or deep breathing exercises to calm down and manage your anger.
 suicide]There is help. If you want to know more don't hesitate to ask!
+frustrated]It's okay to feel stressed out, whats important is you don't keep those problems to yourself tell me about them.
+lost]Don't worry you can get through this and when you do you will understand more about yourself. 
+worry]Its normal to be concerned, I'm here for you if you need help.
+worthless]You are not useless you are as important as everyone else!
+treatment]Depression is treated through medications and or psychotherapy, your psychiatrist or doctor will decide the best course of action for you.
