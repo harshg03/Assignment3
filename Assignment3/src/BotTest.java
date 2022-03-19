@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-public class BotTest {
+public class BotTest extends Bot{
 	private final Bot test_Bot = new Bot();
 
 	@Test
@@ -10,14 +10,14 @@ public class BotTest {
 		String actual = test_Bot.getInput();
 		String output = "how is your day going.";
 		assertEquals(output, actual);
-		fail("Not yet implemented");
+		fail("get_input method, did not pass test.");
 		
 		
 		test_Bot.setInput("@$%^&*iujhg");
 		actual = test_Bot.getInput();
 		output = "@$%^&*iujhg";
 		assertEquals(output, actual);
-		fail("Not yet implemented");
+		fail("get_input method, did not pass test.");
 		
 		test_Bot.setInput("it is great.");
 		actual = test_Bot.getInput();
@@ -30,24 +30,24 @@ public class BotTest {
 	@Test
 	void test_getResponse() {
 		String output = "ERR"; // we expect this to be the output.
-		test_Bot.currentInput = "throw_err";
+		test_Bot.setInput("throw_err");
 		test_Bot.getResponse(); // this will change the currentOutput value , so we can later retrieve the values.
-		String actual = test_Bot.currentOutput;
+		String actual = test_Bot.getInput();
 		assertEquals(output, actual);
 		fail("get_response() methods test failed.");
 		
 		
-		test_Bot.currentInput = "depression";
+		test_Bot.setInput("depression");
 		output =  "I’m going to ask you a series of questions to access the possibility of you suffering from depression."; // we expect this to be the output.
 		test_Bot.getResponse(); // this will change the currentOutput value , so we can later retrieve the values.
-		actual = test_Bot.currentOutput;
+		actual = test_Bot.getInput();
 		assertEquals(output, actual);
 		fail("get_response() methods test failed.");
 		
-		test_Bot.currentInput = "symptoms";
+		test_Bot.setInput("symptoms");
 		output =  "People with mild depression may experience the following: feelings of sadness, loss of appetite, reduced energy levels, sleeping problems, and difficulties with concentration. Mild depression is associated with a less intense feeling with those symptoms. It is highly recommended people with mild depression seek treatment. Do you have any more questions?"; // we expect this to be the output.
 		test_Bot.getResponse(); // this will change the currentOutput value , so we can later retrieve the values.
-		actual = test_Bot.currentOutput;
+		actual = test_Bot.getInput();
 		assertEquals(output, actual);
 		fail("get_response() methods test failed.");
 		
@@ -68,6 +68,7 @@ public class BotTest {
 		test_Bot.goodbye();
 		String actual = test_Bot.getOutput();
 		String output = "It was great talking to you! Goodbye!";
+		System.out.println("output : "+actual.equals(output));
 		assertEquals(output, actual);
 		fail("goodbye method failed.");
 	}

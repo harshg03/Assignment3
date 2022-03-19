@@ -6,8 +6,8 @@ public class Bot {
 	// responsible for the agent's functionality, sets current input and sets
 	// current output based on input
 	String name;
-	String currentInput;
-	String currentOutput;
+	private String currentInput;
+	private String currentOutput;
 	float mood_score = 0;
 	float mood_count = 0;
 	float exchange_count = 0;
@@ -25,7 +25,6 @@ public class Bot {
 
 	Bot() {
 		name = "User";
-		int five = 5
 		load();
 	}
 

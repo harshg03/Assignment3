@@ -2,11 +2,12 @@ import java.util.Properties;
 
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.pipeline.*;
+
 public class Optimizer {
 	
 	public static void main(String[] args) {
-		String text="happy going leaving";
-		System.out.println(removePunc(text));
+		String text="great job";
+		System.out.println(getOptimized(text));
 	}
 	public static String getOptimized(String s) {
 		String result="";

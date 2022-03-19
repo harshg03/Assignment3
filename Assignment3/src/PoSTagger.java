@@ -4,8 +4,8 @@ import java.util.StringTokenizer;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 public class PoSTagger {
 	public static void main(String[] args) {
-		//System.out.println(
-		//		getProperNoun("my name is Atmaza"));
+		System.out.println(
+				getProperNoun("my name is ayesha"));
 	}
 	public static String getProperNoun(String sample) {
 		MaxentTagger tagger=new MaxentTagger("lib/english-left3words-distsim.tagger");
