@@ -63,7 +63,7 @@ public class Bot {
 
 	public void setOutput(String s) {
 
-		System.out.println(s);
+		//System.out.println(s);
 		currentOutput = s;
 
 	}
@@ -73,6 +73,10 @@ public class Bot {
 	}
 
 	public void getResponse() {
+		if(getInput()=="") {
+			setOutput(talk_to_me[(int)(talk_to_me.length*Math.random())]);
+		}
+		else {
 		boolean b = false;
 		for (String key : responses.keySet()) {
 			if (exists_in_input(key)) {
@@ -83,6 +87,7 @@ public class Bot {
 		}
 		if (!b) {
 			apologize();
+		}
 		}
 
 	}

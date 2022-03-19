@@ -10,6 +10,8 @@ public class Optimizer {
 		System.out.println(getOptimized(text));
 	}
 	public static String getOptimized(String s) {
+		if(s=="")
+			return "";
 		String result="";
 		Properties props = new Properties();
 		props.setProperty("annotators", "tokenize,ssplit,pos,lemma");
