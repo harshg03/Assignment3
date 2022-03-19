@@ -16,6 +16,11 @@ class PoSTaggerTest {
 		actual = Optimizer.getOptimized(s);
 		output = "Ayesha";
 		assertEquals(output, actual);
+		
+		s = "";
+		actual = Optimizer.getOptimized(s);
+		output = "";
+		assertEquals(output, actual);
 	
 	}
 

@@ -1,7 +1,7 @@
 import java.util.Properties;
-
-import edu.stanford.nlp.ling.*;
-import edu.stanford.nlp.pipeline.*;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.pipeline.CoreDocument;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 
 public class Optimizer {
 	// uses Lemmatization from CoreNLP Stanford toolkit to create an optimized search string by reducing to lemma and removes punctuation
@@ -9,6 +9,7 @@ public class Optimizer {
 		String text="great symptoms job";
 		System.out.println(getOptimized(text));
 	}
+	
 	public static String getOptimized(String s) {
 		if(s=="")
 			return "";
@@ -28,7 +29,7 @@ public class Optimizer {
 	}
 	public static String removePunc(String s) {
 		
-		String result=s.replaceAll("\\p{Punct}", "");;
+		String result=s.replaceAll("\\p{Punct}", "");
 		return result;
 		
 	}

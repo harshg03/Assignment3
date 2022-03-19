@@ -9,13 +9,13 @@ class OptimizerTest {
 		String actual = Optimizer.getOptimized(s);
 		String output = "happy go leave";
 		assertEquals(output, actual);
-		fail("removePunc method, did not pass test.");
+		fail("testcase 1 failed");
 		
 		s = "great job";
 		actual = Optimizer.getOptimized(s);
 		output = "great job";
 		assertEquals(output, actual);
-		fail("removePunc method, did not pass test.");
+		fail("testcase 2 failed");
 	}
 
 	
