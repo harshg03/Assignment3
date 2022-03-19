@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 
 public class GUI {
 
-	
+	//this class creates the Graphical User Interface and uses the bot object to facilitate conversation
 	private JFrame frame;
 	private JTextField input_field;
 	JTextPane chatHistory;
@@ -81,6 +81,7 @@ public class GUI {
 				input_field.setText("");
 				bot.exchange_count++;
 				if(bot.exchange_count==1) {
+					bot.optimizeInput();
 					bot.name=PoSTagger.getProperNoun(input);
 					if(bot.name=="") {
 						output("Serenity: I'm going to need your name before we continue!");
@@ -92,20 +93,31 @@ public class GUI {
 					output(bot.getOutput());
 					}
 				}
+				else if(input=="") {
+					
+				}
 				else {
 					bot.optimizeInput();
-					bot.updateMoodScore();
-					bot.getResponse();
+					
 					if(bot.check_goodbye()) {
 						bot.goodbye();
 						output("Serenity: "+bot.getOutput());
 					}
 					else {
-						
+						bot.updateMoodScore();
+						bot.getResponse();
 						output("Serenity: "+bot.getOutput());
 					}
-					if(bot.exchange_count>10) {
-						;
+					if(bot.exchange_count>15 && bot.exchange_count%8==0) {
+						
+						switch((int) (3*Math.random())) {
+						case 0: {bot.inform();output("Serenity: "+bot.getOutput());}
+						break;
+						case 1: {bot.affirm();output("Serenity: "+bot.getOutput());}
+						break;
+						case 2: {bot.suggestHelp();output("Serenity: "+bot.getOutput());}
+						}
+						
 					}
 					
 					

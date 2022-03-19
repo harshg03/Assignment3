@@ -3,6 +3,7 @@ import java.util.StringTokenizer;
 
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 public class PoSTagger {
+	//this class uses Parts of Speech tagging from CoreNLP Stanford toolkit to retreive required part of speech
 	public static void main(String[] args) {
 		System.out.println(
 				getProperNoun("my name is ayesha"));

@@ -1,0 +1,6 @@
+{
+	"java.project.referencedLibraries": [
+		"lib/**/*.jar",
+		"/Users/deol/Courses/jar_files/J_Unit_1.7.0.jar"
+	]
+}

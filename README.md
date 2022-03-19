@@ -14,10 +14,11 @@ We are developing a conversational agent named Serenity that talks to the user a
 
 1. Bot : responsible for the agent's functionality, sets current input and sets current output based on input
 2. GUI: creates the Graphical User Interface and uses the bot object to facilitate conversation
-3. Optimizer: uses Lemmatization from CoreNLP Stanford toolkit to create an optimized search string by reducing to lemma
+3. Optimizer: uses Lemmatization from CoreNLP Stanford toolkit to create an optimized search string by reducing to lemma and removes punctuation
 4. LevenshteinDistance: Used as appears from Apache Lucene Search library, returns Levenshtein distance between two strings. Used to handle spelling errors
 5. PoSTagger: uses Parts of Speech tagging from CoreNLP Stanford toolkit to retreive required part of speech
 6. SentimentScorer: Uses Sentiment analysis from Stanford CoreNLP to extract mood score of the input
+7. ReadFromFile: Used for reading values from a text file into a HashMap using specified delimiter
 
 
 

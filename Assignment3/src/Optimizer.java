@@ -4,12 +4,14 @@ import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.pipeline.*;
 
 public class Optimizer {
-	
+	// uses Lemmatization from CoreNLP Stanford toolkit to create an optimized search string by reducing to lemma and removes punctuation
 	public static void main(String[] args) {
-		String text="great job";
+		String text="great symptoms job";
 		System.out.println(getOptimized(text));
 	}
 	public static String getOptimized(String s) {
+		if(s=="")
+			return "";
 		String result="";
 		Properties props = new Properties();
 		props.setProperty("annotators", "tokenize,ssplit,pos,lemma");
