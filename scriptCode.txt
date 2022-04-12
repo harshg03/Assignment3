@@ -1,0 +1,31 @@
+var setup = {
+  parameter:{
+    response:'hi',
+    current:'en',
+    to:'fr'
+  }
+};
+
+
+function getTranslate(e) {
+  e = e || mock;
+
+  var acutalText = ''
+  if (e.parameter.response){
+    sourceText = e.parameter.response;
+  }
+
+  var currentLang = '';
+  if (e.parameter.current){
+    sourceLang = e.parameter.current;
+  }
+
+  var toLang = 'en';
+  if (e.parameter.to){
+    targetLang = e.parameter.to;
+  }
+
+  var translatedText = LanguageApp.translate(actualText, currentLang, toLang, {contentType: 'html'});
+
+  return ContentService.createTextOutput(JSON.stringify(translatedText)).setMimeType(ContentService.MimeType.JSON);
+}
