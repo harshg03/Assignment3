@@ -25,6 +25,8 @@ We are developing a conversational agent named Serenity that talks to the user a
 
 ## Note
 Classes 8. Translator and 9. Places have not been incorporated into the project yet and are a work in progress.
+To run the Translator class you will have to create a google scripts project and deply it as a web app to get its url, the base code for the setup of the google script project is provided under the scriptCode.txt file.
+To run the Places class you will need to need to setup a Google Cloud Console and create a project and generate an api key, more information is available here https://developers.google.com/maps/documentation/places/web-service/cloud-setup
 
 
 
