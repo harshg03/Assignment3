@@ -8,21 +8,21 @@ var setup = {
 
 
 function getTranslate(e) {
-  e = e || mock;
+  e = e || setup;
 
   var acutalText = ''
   if (e.parameter.response){
-    sourceText = e.parameter.response;
+    actualText = e.parameter.response;
   }
 
   var currentLang = '';
   if (e.parameter.current){
-    sourceLang = e.parameter.current;
+    currentLang = e.parameter.current;
   }
 
   var toLang = 'en';
   if (e.parameter.to){
-    targetLang = e.parameter.to;
+    toLang = e.parameter.to;
   }
 
   var translatedText = LanguageApp.translate(actualText, currentLang, toLang, {contentType: 'html'});
