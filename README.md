@@ -19,6 +19,12 @@ We are developing a conversational agent named Serenity that talks to the user a
 5. PoSTagger: uses Parts of Speech tagging from CoreNLP Stanford toolkit to retreive required part of speech
 6. SentimentScorer: Uses Sentiment analysis from Stanford CoreNLP to extract mood score of the input
 7. ReadFromFile: Used for reading values from a text file into a HashMap using specified delimiter
+8. Translator: Used for translating text from a french speaker to english for the agent by way of google scripts and their Google Class Language App.
+9. Places: Used to provide the user with information on their local mental health care representatives through the help of the Google Place API
+
+
+## Note
+Classes 8. Translator and 9. Places have not been incorporated into the project yet and are a work in progress.
 
 
 
